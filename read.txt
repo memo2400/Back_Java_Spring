@@ -1,0 +1,208 @@
+
+org.hibernate.exception.JDBCConnectionException: unable to obtain isolated JDBC connection [Communications link failure
+
+Caused by: com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+
+
+my sql , instalador
+https://dev.mysql.com/downloads/installer/
+
+
+descargar de wokbench sql
+https://dev.mysql.com/downloads/file/?id=528765
+
+
+de aqui descargue segun el video
+https://dev.mysql.com/downloads/installer/
+
+se tuvo que instalar de acuerdo al tutorila la misma vesion de 
+wokbech y mySQL, y asi ya funciono la generacion de la tabla con java.
+8.0.32
+
+ -------
+    Hibernate: create table empleado (id_empleado integer not null auto_increment, departamento varchar(255), nombre varchar(255), sueldo float(53), primary key (id_empleado)) engine=InnoDB
+    Hibernate: create table empleado_2 (id_empleado integer not null auto_increment, departamento varchar(255), nombre varchar(255), sueldo float(53), primary key (id_empleado)) 
+    engine=InnoDB
+ -----
+
+LA consulta en el wokrbech debia ser con user rrot para que fucnionara.
+ña consulta y ya pude ver las dos tablas.
+
+Lec 177
+
+se da clic derechoa a la tabla y en alter table
+
+    ponemos el nombre en segundo lugar.
+    y en aplicar
+
+ahora clic derecho y select rows.
+    con eso vemos los head de la tabla
+    podemos llenar los datos sin tocar el ID,
+    en apply  y losto
+
+-------------------------------
+
+lec 178
+
+se genera un pakage de repositrio
+
+se crea una interface EmpleadoRepositrio
+
+se hae el pakete servicios
+
+se genera otr inteface, esto porque spring siempre te las pide.
+
+voy a empleadoServicio le doy clic a
+    add unimplemente metodos
+
+    se agrega codigo en automaticos
+todo eso de emplado servicio se implementa con Hivbernate
+
+----------------
+
+Leccion 179.
+
+crwamos app rest
+
+creamos paquete controlador.
+
+Fin 
+
+--------------------
+
+Leccion 180
+
+se agrega funcion para consultad todos loa empleados
+
+se prueba la app en el navegador.
+
+/8080/rh-app/empleados
+
+--------------
+
+leccion  181.
+
+Seusara postman
+url tipo get
+http://localhost:8080/rh-app/empleados
+
+-----------------
+Leccion 188.
+
+se debe enviar en postamn con el link 
+y en tipo body - raw - JSON
+
+inserto esto sin ID.
+
+    {
+        "nombre": "Jeff Bezos",
+        "departamento": "Amazon",
+        "sueldo": 9900.0
+    }
+
+esto me respondio la app y aparecio un 200 de estaus OK
+{
+    "idEmpleado": 6,
+    "nombre": "Jeff Bezos",
+    "departamento": "Amazon",
+    "sueldo": 9900.0
+}
+
+
+-------------
+
+lec 192
+
+se agregara el buscar empleado por ID. en el controlador rest
+
+se cra el paquete exception
+
+probamos el nuevo codigo con postman
+/## numero
+
+http://localhost:8080/rh-app/empleados/6
+
+
+jala al  100
+
+respuesta 
+
+{
+    "idEmpleado": 6,
+    "nombre": "Jeff Bezos",
+    "departamento": "Amazon",
+    "sueldo": 9900.0
+}
+
+ya quedo full
+
+si meto unid que no existe pasa esto
+
+responde  con un 404 not found
+{
+    "timestamp": "2024-11-06T16:03:52.621+00:00",
+    "status": 404,
+    "error": "Not Found",
+    "path": "/rh-app/empleados/8"
+}
+
+-----------------------------------
+
+post era para agregara
+ahora se usara el PUT.
+
+usamos postman para porbar nuestro metodo PUT.
+
+usaremos un ID ya existente 
+
+metdod PUT
+http://localhost:8080/rh-app/empleados/5
+
+en el Budy, enviamos el RAW e siguiente JSON. aqui el ID esta de mas pero igual lo dejamos
+
+    {
+        "idEmpleado": 5,
+        "nombre": "Mark Zukaritas",
+        "departamento": "Meta",
+        "sueldo": 20000.0
+    }
+
+Depues de enviar nos responde con el 200-OK
+
+    {
+    "idEmpleado": 5,
+    "nombre": "Mark Zukaritas",
+    "departamento": "Meta",
+    "sueldo": 20000.0
+    }
+
+----------------
+
+lec 197
+
+agregaremos en controlador, el borrado
+
+
+uso la peticion, DELETE, y la direccion
+http://localhost:8080/rh-app/empleados/7
+
+con el numero final decido cual eliminar
+
+respuesta un OK 200, de que si se eleimino
+{
+    "eliminado": true
+}
+
+si el borrado falla responde, {
+    "timestamp": "2024-11-08T04:33:50.073+00:00",
+    "status": 404,
+    "error": "Not Found",
+    "path": "/rh-app/empleados/7"
+}
+
+asi se ve el borrado en la consola.
+Hibernate: select e1_0.id_empleado,e1_0.departamento,e1_0.nombre,e1_0.sueldo from empleado e1_0 where e1_0.id_empleado=?
+Hibernate: delete from empleado where id_empleado=?
+Hibernate: select e1_0.id_empleado,e1_0.departamento,e1_0.nombre,e1_0.sueldo from empleado e1_0
+[http-nio-8080-exec-5] INFO : gm.rh.controlador.EmpleadoControlador - Empleado(idEmpleado=1, nombre=Kai Hansen, departamento=Gamma Ray, sueldo=15000.0)
