@@ -1,5 +1,7 @@
 package gm.rh.modelo;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Entity;      // con ello se crea la tabla bd en autmatico
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,23 +17,23 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Posiciones {
+public class Posicion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)     // se genera en automatico la llave primaria.
     
     Integer idPosicion ;
     String instrumento;
     String plazo;
-    String fecha_registro;
-    String fecha_subasta;
+    LocalDate fecha_registro;
+    LocalDate fecha_subasta;
 
-    String fecha_final;
+    LocalDate fecha_final;
     Boolean reinversion;
     Double monto;
     Double isr_retenido;
     Double rendimiento;
 
     Boolean largo_plazo;
-
+     
     // Instrumento 	Plazo 	Registro 	Dia de Subasta 	Fecha Final 	Reinversion 	Monto 	ISR Ret 	Rendimiento %
 }
