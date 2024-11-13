@@ -21,7 +21,7 @@ public class Posicion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)     // se genera en automatico la llave primaria.
     
-    Integer idPosicion ;
+    Integer idPosicion;
     String instrumento;
     String plazo;
     LocalDate fecha_registro;
