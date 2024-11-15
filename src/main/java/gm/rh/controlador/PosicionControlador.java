@@ -2,6 +2,7 @@ package gm.rh.controlador;
 
 
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -26,10 +27,11 @@ public class PosicionControlador {
     @Autowired
     private InterPosicionServicio posicionServicio;
 
-    @GetMapping("/empleados/largo-plazo")
+    @GetMapping("/empleados/largoplazo")
     public ResponseEntity<List<Posicion>> listarPosicionesLargoPlazo(){
 
-        List<Posicion> posiciones = posicionServicio.obtenerPosicionesLargoPlazo();
+        List<Posicion> posiciones = posicionServicio.buscarPosicionesLargoPlazoEntreFechas(LocalDate fechaInicial, localDate fechaFinal);
+        
         return ResponseEntity.ok(posiciones);
     }
 

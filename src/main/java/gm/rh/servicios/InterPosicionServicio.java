@@ -1,5 +1,6 @@
 package gm.rh.servicios;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import gm.rh.modelo.Posicion;
@@ -15,6 +16,8 @@ public interface InterPosicionServicio {
 
     public void eliminarPosicion(Posicion posicion);
 
-    public List<Posicion> obtenerPosicionesLargoPlazo();
+    public List<Posicion> buscarPosicionesLargoPlazoEntreFechas(LocalDate fechaInicial, LocalDate fechaFinal);
+
+    public List<Posicion> buscarPosicionesEntreFechaFinal(LocalDate fechaInicial, LocalDate fechaFinal);
 
 }

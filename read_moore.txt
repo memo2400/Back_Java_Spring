@@ -38,3 +38,10 @@ in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaReposito
 
             List<Posicion> findByLargoPlazoTrue();
     y en el modelo se retiran los nombres de "_" por "largoPlazo" , etc
+
+###########################
+
+falta el revisar el archiv de servicio normal, que dentro de si utilize largo_plazo
+funcion del repositorio, fynd By etctec
+
+y en controller la lisata debe ser solo List

@@ -1,5 +1,6 @@
 package gm.rh.servicios;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,12 +42,19 @@ public class PosicionServicio implements InterPosicionServicio {
         throw new UnsupportedOperationException("Unimplemented method 'eliminarPosicion'");
     }
 
+    @Override
+    public List<Posicion> buscarPosicionesLargoPlazoEntreFechas(LocalDate fechaInicial, LocalDate fechaFinal) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'buscarPosicionesLargoPlazoEntreFechas'");
+    }
 
     @Override
-    public List<Posicion> obtenerPosicionesLargoPlazo() {
-        // return posicionRepositorio.findByLargoPlazoTrue();
-        throw new UnsupportedOperationException("Unimplemented method 'eliminarPosicion'");
-
+    public List<Posicion> buscarPosicionesEntreFechaFinal(LocalDate fechaInicial, LocalDate fechaFinal) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'buscarPosicionesEntreFechaFinal'");
     }
+
+
+
 
 }
