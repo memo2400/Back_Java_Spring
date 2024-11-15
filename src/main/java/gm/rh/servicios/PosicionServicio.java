@@ -41,11 +41,11 @@ public class PosicionServicio implements InterPosicionServicio {
         throw new UnsupportedOperationException("Unimplemented method 'eliminarPosicion'");
     }
 
+
     @Override
-    public Posicion buscarPosicionLargoPlazo(Boolean largo_plazo) {
-        // TODO Auto-generated method stub
-        Posicion posicion = posicionRepositorio.findBy(largo_plazo, largo_plazo);  
-    
+    public List<Posicion> obtenerPosicionesLargoPlazo() {
+        return posicionRepositorio.findByLargoPlazoTrue();
+
     }
 
 }

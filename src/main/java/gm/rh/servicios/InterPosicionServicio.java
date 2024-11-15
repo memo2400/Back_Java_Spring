@@ -15,6 +15,6 @@ public interface InterPosicionServicio {
 
     public void eliminarPosicion(Posicion posicion);
 
-    public Posicion buscarPosicionLargoPlazo(Boolean largo_plazo);
+    public List<Posicion> obtenerPosicionesLargoPlazo();
 
 }
