@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 // importo el modelo
 import gm.rh.modelo.Posicion;
+import java.time.LocalDate;
+
 
 public interface PosicionesRepositorio extends JpaRepository <Posicion, Integer>{
 
@@ -19,5 +21,9 @@ public interface PosicionesRepositorio extends JpaRepository <Posicion, Integer>
     List<Posicion> findByLargoPlazo(Boolean largoPlazo);
 
     List<Posicion> findByLargoPlazoTrue();
+
+    List<Posicion> findByFechaFinalBetween(LocalDate starDate, LocalDate endDate);
     
+    List<Posicion> findByLargoPlazoTrueAndFechaFinalBetween(LocalDate startDate, LocalDate endDate);
+
 }
