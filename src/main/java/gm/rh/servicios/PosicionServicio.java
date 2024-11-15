@@ -44,7 +44,8 @@ public class PosicionServicio implements InterPosicionServicio {
 
     @Override
     public List<Posicion> obtenerPosicionesLargoPlazo() {
-        return posicionRepositorio.findByLargoPlazoTrue();
+        // return posicionRepositorio.findByLargoPlazoTrue();
+        throw new UnsupportedOperationException("Unimplemented method 'eliminarPosicion'");
 
     }
 

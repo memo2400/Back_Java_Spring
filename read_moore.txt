@@ -10,3 +10,31 @@ Hibernate: create table posiciones (id_posicion integer not null auto_increment,
 Hibernate: create table empleado (id_empleado integer not null auto_increment, departamento varchar(255), nombre varchar(255), sueldo float(53), primary key (id_empleado)) engine=InnoDB
 Hibernate: create table posiciones (id_posicion integer not null auto_increment, fecha_final varchar(255), fecha_registro varchar(255), fecha_subasta varchar(255), instrumento varchar(255), isr_retenido float(53), largo_plazo bit, monto float(53), plazo varchar(255), reinversion bit, rendimiento float(53), primary key (id_posicion)) engine=InnoDB
 [main] 
+
+
+###################
+
+
+error despues de agregar el largo_plazo true
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' 
+enabled.
+[main] ERROR: org.springframework.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: 
+
+Error creating bean with name 'posicionControlador': Unsatisfied dependency expressed through 
+field 'posicionServicio': 
+Error creating bean with name 'posicionServicio': Unsatisfied dependency expressed through field 'posicionRepositorio': 
+
+Error creating bean with name 'posicionesRepositorio' defined in gm.rh.repositorio.PosicionesRepositorio defined 
+in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: 
+
+    Could not create query for public abstract java.util.List gm.rh.repositorio.PosicionesRepositorio.findByLargoPlazoTrue(); 
+    Reason: Failed to create query for method public abstract java.util.List gm.rh.repositorio.PosicionesRepositorio.findByLargoPlazoTrue(); 
+    No property 'largoPlazo' found for type 'Posicion'; Did you mean 'largo_plazo'
+
+    se corrije usando 
+            List<Posicion> findByLargoPlazo(Boolean largoPlazo);
+
+            List<Posicion> findByLargoPlazoTrue();
+    y en el modelo se retiran los nombres de "_" por "largoPlazo" , etc

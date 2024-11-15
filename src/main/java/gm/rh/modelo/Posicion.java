@@ -24,16 +24,17 @@ public class Posicion {
     Integer idPosicion;
     String instrumento;
     String plazo;
-    LocalDate fecha_registro;
-    LocalDate fecha_subasta;
+    LocalDate fechaRegistro;
+    LocalDate fechaSubasta;
 
-    LocalDate fecha_final;
+    LocalDate fechaFinal;
     Boolean reinversion;
     Double monto;
-    Double isr_retenido;
+    Double isrRetenido;
     Double rendimiento;
 
-    Boolean largo_plazo;
+    // Afuerza hay que usar este tipo de nombre sin "_" para que no falle la JPA Convention
+    Boolean largoPlazo;
      
     // Instrumento 	Plazo 	Registro 	Dia de Subasta 	Fecha Final 	Reinversion 	Monto 	ISR Ret 	Rendimiento %
 }

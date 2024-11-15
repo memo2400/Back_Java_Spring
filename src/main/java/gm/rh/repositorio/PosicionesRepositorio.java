@@ -8,12 +8,16 @@ import gm.rh.modelo.Posicion;
 
 public interface PosicionesRepositorio extends JpaRepository <Posicion, Integer>{
 
-    List<Posicion> encontrarPorIdEntre(Integer startId, Integer endId);
+    // List<Posicion> encontrarPorIdEntre(Integer startId, Integer endId);
 
     // List<Posicion> encontrarPorLargoPlazoTrue();
 
     // Método utilizando convención de Spring Data JPA de chat GPT.
-    List<Posicion> findByLargoPlazoTrue();
+    // List<Posicion> findByLargoPlazoTrue();
 
+    // Funcional
+    List<Posicion> findByLargoPlazo(Boolean largoPlazo);
+
+    List<Posicion> findByLargoPlazoTrue();
     
 }
