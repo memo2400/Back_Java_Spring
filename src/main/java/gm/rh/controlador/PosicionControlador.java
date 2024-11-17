@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import gm.rh.modelo.Posicion;
@@ -39,10 +40,13 @@ public class PosicionControlador {
 
     }
 
+    // mi error era tenr path varible en lugar de  request param
+
     @GetMapping("/largoplazo")
-    public ResponseEntity<List<Posicion>> listarFinDePosicionesLargoPlazo(@PathVariable("fechaInicial") LocalDate fechaInicial, @PathVariable ("fechaFinal") LocalDate fechaFinal){
+    public ResponseEntity<List<Posicion>> listarFinDePosicionesLargoPlazo(@RequestParam("fechaInicial") LocalDate fechaInicial, @RequestParam ("fechaFinal") LocalDate fechaFinal){
 
         List<Posicion> posiciones = posicionServicio.buscarPosicionesLargoPlazoEntreFechas(fechaInicial, fechaFinal);
+        posiciones.forEach((empleado -> logger.info(empleado.toString()))); 
 
         return ResponseEntity.ok(posiciones);
     }
