@@ -44,8 +44,9 @@ public class PosicionServicio implements InterPosicionServicio {
 
     @Override
     public List<Posicion> buscarPosicionesLargoPlazoEntreFechas(LocalDate fechaInicial, LocalDate fechaFinal) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarPosicionesLargoPlazoEntreFechas'");
+        // throw new UnsupportedOperationException("Unimplemented method 'buscarPosicionesLargoPlazoEntreFechas'");
+        List<Posicion> posicion = posicionRepositorio.findByLargoPlazoTrueAndFechaFinalBetween(fechaInicial, fechaFinal);
+        return posicion;
     }
 
     @Override

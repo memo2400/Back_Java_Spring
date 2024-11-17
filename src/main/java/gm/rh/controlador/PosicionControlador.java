@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,7 +19,7 @@ import gm.rh.modelo.Posicion;
 import gm.rh.servicios.InterPosicionServicio;
 
 @RestController
-@RequestMapping("Po-app")
+@RequestMapping("po-app")
 @CrossOrigin("http://localhost:3000")
 public class PosicionControlador {
 
@@ -27,13 +28,32 @@ public class PosicionControlador {
     @Autowired
     private InterPosicionServicio posicionServicio;
 
-    @GetMapping("/empleados/largoplazo")
-    public ResponseEntity<List<Posicion>> listarPosicionesLargoPlazo(){
+    @GetMapping("/listaall")
+    public List<Posicion> obtenerPosiciones() {
+        var empleados = posicionServicio.listarPosiciones();
+        // mandamos a imprimir el show
+        // enla consola se ve asi, Hibernate: select e1_0.id_empleado,e1_0.departamento,e1_0.nombre,e1_0.sueldo from empleado e1_0
+        empleados.forEach((empleado -> logger.info(empleado.toString())));        // expresion lambda para procesar cada entrada
 
-        List<Posicion> posiciones = posicionServicio.buscarPosicionesLargoPlazoEntreFechas(LocalDate fechaInicial, localDate fechaFinal);
-        
+        return empleados;
+
+    }
+
+    @GetMapping("/largoplazo")
+    public ResponseEntity<List<Posicion>> listarFinDePosicionesLargoPlazo(@PathVariable("fechaInicial") LocalDate fechaInicial, @PathVariable ("fechaFinal") LocalDate fechaFinal){
+
+        List<Posicion> posiciones = posicionServicio.buscarPosicionesLargoPlazoEntreFechas(fechaInicial, fechaFinal);
+
         return ResponseEntity.ok(posiciones);
     }
+
+    // @GetMapping("/largoplazoo")
+    // public <List<Posicion>> listarFinDePosicionesLargoPlazo22(@PathVariable("fechaInicial") LocalDate fechaInicial, @PathVariable ("fechaFinal") LocalDate fechaFinal){
+
+    //     // List<Posicion> posiciones = posicionServicio.buscarPosicionesLargoPlazoEntreFechas(fechaInicial, fechaFinal);
+
+    //     return posicionServicio.buscarPosicionesLargoPlazoEntreFechas(fechaInicial, fechaFinal);
+    // }
 
 
 }
