@@ -45,3 +45,39 @@ falta el revisar el archiv de servicio normal, que dentro de si utilize largo_pl
 funcion del repositorio, fynd By etctec
 
 y en controller la lisata debe ser solo List
+
+
+###########################
+
+
+post inserte esto.
+
+{
+        "instrumento": "cetes",
+        "plazo": null,
+        "fechaRegistro": "2023-12-06",
+        "fechaSubasta": null,
+        "fechaFinal": "2024-12-08",
+        "reinversion": false,
+        "monto": 13599.87,
+        "isrRetenido": null,
+        "rendimiento": 10.11,
+        "largoPlazo": false
+}
+
+
+la respuesta fue esto.
+
+{
+    "idPosicion": 9,
+    "instrumento": "cetes",
+    "plazo": null,
+    "fechaRegistro": "2023-12-06",
+    "fechaSubasta": null,
+    "fechaFinal": "2024-12-08",
+    "reinversion": false,
+    "monto": 13599.87,
+    "isrRetenido": null,
+    "rendimiento": 10.11,
+    "largoPlazo": false
+}
