@@ -33,7 +33,8 @@ public class PosicionServicio implements InterPosicionServicio {
     @Override
     public Posicion guardarPosicion(Posicion posicion) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'guardarPosicion'");
+        // throw new UnsupportedOperationException("Unimplemented method 'guardarPosicion'");
+        return posicionRepositorio.save(posicion);
     }
 
     @Override
