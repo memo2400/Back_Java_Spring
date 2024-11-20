@@ -13,12 +13,14 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import gm.rh.excepcion.RecursoNoEncontradoExcepcion;
+import gm.rh.modelo.Empleado;
 import gm.rh.modelo.Posicion;
 import gm.rh.servicios.InterPosicionServicio;
 
@@ -79,14 +81,28 @@ public class PosicionControlador {
         return ResponseEntity.ok(posicionId);
     }
 
+    //  este es el PUT , al parecer aun no se usa el put mas adelante
+    @PutMapping("/posicionId/{id}")
+    public ResponseEntity<Posicion> actualizarPosicion(@PathVariable Integer id, 
+    @RequestBody Posicion posicionRecibida){
 
-    // @GetMapping("/largoplazoo")
-    // public <List<Posicion>> listarFinDePosicionesLargoPlazo22(@PathVariable("fechaInicial") LocalDate fechaInicial, @PathVariable ("fechaFinal") LocalDate fechaFinal){
+        // buscaremos nuestro objeto Posicion y para asegurarnos que exite, primero lo buscamos por id.
+        Posicion posicion = posicionServicio.buscarPosicionPorId(id);
 
-    //     // List<Posicion> posiciones = posicionServicio.buscarPosicionesLargoPlazoEntreFechas(fechaInicial, fechaFinal);
+        // esta es una validacino antes de guardado, para no hacer el guardado directo.
+        if (posicion == null)
+            throw new RecursoNoEncontradoExcepcion("El ID de Posicion recibido no existe: " + id);
+        // instrumento, fechaFinal, monto
+        posicion.setInstrumento(posicionRecibida.getInstrumento());
+        posicion.setFechaFinal(posicionRecibida.getFechaFinal());
+        posicion.setMonto(posicionRecibida.getMonto());
 
-    //     return posicionServicio.buscarPosicionesLargoPlazoEntreFechas(fechaInicial, fechaFinal);
-    // }
+        posicionServicio.guardarPosicion(posicion);
+
+        //  aqui el objeto posicion ya esta actualizado, nosotros ahora nos redirigimos al listado
+        return ResponseEntity.ok(posicion);
+
+    }
 
 
 }
