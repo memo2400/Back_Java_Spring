@@ -81,8 +81,8 @@ public class PosicionControlador {
         return ResponseEntity.ok(posicionId);
     }
 
-    //  este es el PUT , al parecer aun no se usa el put mas adelante
-    @PutMapping("/posicionId/{id}")
+    //  este es el PUT para Editar, al parecer aun no se usa el put mas adelante
+    @PutMapping("/posicionEdit/{id}")
     public ResponseEntity<Posicion> actualizarPosicion(@PathVariable Integer id, 
     @RequestBody Posicion posicionRecibida){
 
