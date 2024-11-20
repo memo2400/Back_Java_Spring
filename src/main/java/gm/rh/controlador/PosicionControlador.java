@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import gm.rh.excepcion.RecursoNoEncontradoExcepcion;
 import gm.rh.modelo.Posicion;
 import gm.rh.servicios.InterPosicionServicio;
 
@@ -59,6 +60,23 @@ public class PosicionControlador {
         logger.info("La posicion a agregar/actulizar es: " + posicionToSave);
             
         return posicionServicio.guardarPosicion(posicionToSave);
+    }
+
+
+    // burcar posicion por ID lec 192, va a ir envuelta la respues en Entity
+    // el pathvariable significa que viene de nuestra ruta URL la variable
+    // BUSCAR POSICION
+    @GetMapping("/posicionId/{id}")
+    public ResponseEntity<Posicion> obtenerPosicionPorID (@PathVariable Integer id){
+
+        Posicion posicionId = posicionServicio.buscarPosicionPorId(id);                             
+        if (posicionId == null){
+            //
+            throw new RecursoNoEncontradoExcepcion("No se encontró la posicion con ID= " + id);
+        
+        }
+        // se responde el empleado, dentro del respnse entity.
+        return ResponseEntity.ok(posicionId);
     }
 
 
