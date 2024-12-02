@@ -3,13 +3,16 @@ package gm.rh.controlador;
 
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -101,6 +104,27 @@ public class PosicionControlador {
 
         //  aqui el objeto posicion ya esta actualizado, nosotros ahora nos redirigimos al listado
         return ResponseEntity.ok(posicion);
+
+    }
+
+    // Borrar una Posicion
+    @DeleteMapping("/posiciones/{id_to_delete}")
+    //  la respuesta sera texto y valor, recibirmos el id a eliminar
+    public ResponseEntity <Map<String, Boolean>> eliminarPosicion (@PathVariable Integer id_to_delete)
+    {
+        // recuperarmos el objeto empleado de BD antes de eleiminarlo. veremo primero si existe.
+        Posicion posicion_to_delete = posicionServicio.buscarPosicionPorId(id_to_delete);
+
+        if (posicion_to_delete == null)
+            throw new RecursoNoEncontradoExcepcion("El ID recibido no existe: " + id_to_delete);
+        
+        posicionServicio.eliminarPosicion(posicion_to_delete);
+        
+        // Json {"emilinado", "true"}
+        Map<String, Boolean> respuesta = new HashMap<>();
+        respuesta.put("eliminado", Boolean.TRUE);        
+        
+        return ResponseEntity.ok(respuesta);
 
     }
 

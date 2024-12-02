@@ -38,9 +38,9 @@ public class PosicionServicio implements InterPosicionServicio {
     }
 
     @Override
-    public void eliminarPosicion(Posicion posicion) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'eliminarPosicion'");
+    public void eliminarPosicion(Posicion posicion_to_delete) {
+        
+        posicionRepositorio.delete(posicion_to_delete);
     }
 
     @Override
