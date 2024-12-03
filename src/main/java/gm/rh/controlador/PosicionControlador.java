@@ -61,9 +61,17 @@ public class PosicionControlador {
 
     @PostMapping("/posiciones")
     public Posicion agregarActualizarPosicion(@RequestBody Posicion posicionToSave){
+    // public ResponseEntity <Map<String, Boolean>> agregarActualizarPosicion(@RequestBody Posicion posicionToSave){
             
         logger.info("La posicion a agregar/actulizar es: " + posicionToSave);
             
+        // posicionServicio.guardarPosicion(posicionToSave);
+        // // Json postman {"emilinado", "true"}
+        // Map<String, Boolean> respuesta = new HashMap<>();
+        // respuesta.put("La posicion agregada/actualizada fue: " + posicionToSave, Boolean.TRUE);        
+         
+        // return ResponseEntity.ok(respuesta);
+
         return posicionServicio.guardarPosicion(posicionToSave);
     }
 
@@ -122,7 +130,7 @@ public class PosicionControlador {
         
         // Json {"emilinado", "true"}
         Map<String, Boolean> respuesta = new HashMap<>();
-        respuesta.put("eliminado", Boolean.TRUE);        
+        respuesta.put("La posicion eliminada fue: " + posicion_to_delete, Boolean.TRUE);        
         
         return ResponseEntity.ok(respuesta);
 
