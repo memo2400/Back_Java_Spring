@@ -1,6 +1,7 @@
 package gm.rh.modelo;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;      // con ello se crea la tabla bd en autmatico
 import jakarta.persistence.GeneratedValue;
@@ -35,6 +36,7 @@ public class Posicion {
 
     // Afuerza hay que usar este tipo de nombre sin "_" para que no falle la JPA Convention
     Boolean largoPlazo;
+    LocalDateTime fechaCapturaFront;
      
     // Instrumento 	Plazo 	Registro 	Dia de Subasta 	Fecha Final 	Reinversion 	Monto 	ISR Ret 	Rendimiento %
 }
