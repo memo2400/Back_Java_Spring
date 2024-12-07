@@ -2,12 +2,16 @@ package gm.rh.modelo;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;      // con ello se crea la tabla bd en autmatico
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import lombok.AllArgsConstructor;
 import lombok.Data;                     // para crear los get y setters automarticos.
@@ -40,8 +44,14 @@ public class Posicion {
     Boolean largoPlazo;
     LocalDateTime fechaCapturaFront;
 
-    @Column(columnDefinition = "JSON") // MySQL lo tratará como tipo JSON
-    private String modificaciones;
+    // @Column(columnDefinition = "JSON") // MySQL lo tratará como tipo JSON // no funciono
+    // private String modificaciones;
+    // String modificaciones;   // no funciono
+    // private List<Modificacion> modificaciones; // no funciono  usando el la clase Modificacion
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "posicion_id") // Esto genera una relación unidireccional
+    private List<Modificacion> modificaciones;
 
 
     // LocalDateTime fechaServer;

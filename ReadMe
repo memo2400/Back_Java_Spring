@@ -1,0 +1,8 @@
+
+Detalles importantes:
+
+    Relaciones entre entidades: La relación @OneToMany permite manejar la lista modificaciones del JSON, asegurando que se guarden como una tabla separada en tu base de datos.
+
+    Manejo de nombres de campos con @JsonProperty: Esto asegura que los nombres de los atributos en tu clase puedan mapearse a nombres de campos del JSON cuando no coinciden exactamente.
+
+    Persistencia automática de modificaciones: El uso de CascadeType.ALL asegura que las modificaciones se guarden automáticamente junto con la posición.
