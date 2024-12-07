@@ -81,3 +81,17 @@ la respuesta fue esto.
     "rendimiento": 10.11,
     "largoPlazo": false
 }
+
+
+Lo que se retiro de codigo test del modlo posicion
+    
+    // LocalDateTime fechaServer;
+    // @PrePersist
+    // public void prePersist() {
+    //     this.fechaServer = LocalDateTime.now(); // Asignar la fecha y hora actual
+    // }
+
+    // @Column(columnDefinition = "JSON") // MySQL lo tratará como tipo JSON // no funciono
+    // private String modificaciones;
+    // String modificaciones;   // no funciono
+    // private List<Modificacion> modificaciones; // no funciono  usando el la clase Modificacion

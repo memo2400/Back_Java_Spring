@@ -44,22 +44,12 @@ public class Posicion {
     Boolean largoPlazo;
     LocalDateTime fechaCapturaFront;
 
-    // @Column(columnDefinition = "JSON") // MySQL lo tratará como tipo JSON // no funciono
-    // private String modificaciones;
-    // String modificaciones;   // no funciono
-    // private List<Modificacion> modificaciones; // no funciono  usando el la clase Modificacion
-
+   
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "posicion_id") // Esto genera una relación unidireccional
     private List<Modificacion> modificaciones;
 
 
-    // LocalDateTime fechaServer;
-    // @PrePersist
-    // public void prePersist() {
-    //     this.fechaServer = LocalDateTime.now(); // Asignar la fecha y hora actual
-    // }
 
      
-    // Instrumento 	Plazo 	Registro 	Dia de Subasta 	Fecha Final 	Reinversion 	Monto 	ISR Ret 	Rendimiento %
 }
