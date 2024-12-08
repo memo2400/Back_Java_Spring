@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import lombok.AllArgsConstructor;
@@ -44,12 +45,15 @@ public class Posicion {
     Boolean largoPlazo;
     LocalDateTime fechaCapturaFront;
 
-   
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "posicion_id") // Esto genera una relación unidireccional
-    private List<Modificacion> modificaciones;
+    // // Funcional para hacer una nueva tabla cada que se inserta una nueva posicon
+    // @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    // @JoinColumn(name = "posicion_id") // Esto genera una relación unidireccional
+    // private List<Modificacion> modificaciones;
 
-
+    // Pruebas
+    // @Lob
+    // @Column(columnDefinition = "TEXT") // Guarda el JSON como texto largo
+    // private String modificaciones; // JSON de modificaciones
 
      
 }

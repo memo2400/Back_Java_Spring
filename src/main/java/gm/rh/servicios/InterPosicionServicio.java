@@ -2,6 +2,9 @@ package gm.rh.servicios;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 import gm.rh.modelo.Posicion;
 public interface InterPosicionServicio {
@@ -19,5 +22,9 @@ public interface InterPosicionServicio {
     public List<Posicion> buscarPosicionesLargoPlazoEntreFechas(LocalDate fechaInicial, LocalDate fechaFinal);
 
     public List<Posicion> buscarPosicionesEntreFechaFinal(LocalDate fechaInicial, LocalDate fechaFinal);
+
+    public String convertirListaAJson(List<Map<String, Object>> modificaciones) throws JsonProcessingException;
+
+    public List<Map<String, Object>> convertirJsonALista(String json) throws JsonProcessingException;
 
 }

@@ -2,9 +2,13 @@ package gm.rh.servicios;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import gm.rh.modelo.Posicion;
 import gm.rh.repositorio.PosicionesRepositorio;
@@ -56,7 +60,30 @@ public class PosicionServicio implements InterPosicionServicio {
         throw new UnsupportedOperationException("Unimplemented method 'buscarPosicionesEntreFechaFinal'");
     }
 
+    // manejo de modificaciones Json
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
+    @Override
+    public String convertirListaAJson(List<Map<String, Object>> modificaciones) throws JsonProcessingException {
+        // TODO Auto-generated method stub
+        // throw new UnsupportedOperationException("Unimplemented method 'convertirListaAJson'");
+        return objectMapper.writeValueAsString(modificaciones);
+    }
+
+    @Override
+    public List<Map<String, Object>> convertirJsonALista(String json) throws JsonProcessingException {
+        // TODO Auto-generated method stub
+        // throw new UnsupportedOperationException("Unimplemented method 'convertirJsonALista'");
+        return objectMapper.readValue(json, List.class);
+    }
+
+    // public String convertirListaAJson(List<Map<String, Object>> modificaciones) throws JsonProcessingException {
+    //     return objectMapper.writeValueAsString(modificaciones);
+    // }
+
+    // public List<Map<String, Object>> convertirJsonALista(String json) throws JsonProcessingException {
+    //     return objectMapper.readValue(json, List.class);
+    // }
 
 
 }
