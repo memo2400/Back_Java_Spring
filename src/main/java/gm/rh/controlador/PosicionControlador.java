@@ -103,10 +103,12 @@ public class PosicionControlador {
         // esta es una validacino antes de guardado, para no hacer el guardado directo.
         if (posicion == null)
             throw new RecursoNoEncontradoExcepcion("El ID de Posicion recibido no existe: " + id);
-        // instrumento, fechaFinal, monto
+        // instrumento, fechaFinal, monto, plazo
         posicion.setInstrumento(posicionRecibida.getInstrumento());
         posicion.setFechaFinal(posicionRecibida.getFechaFinal());
         posicion.setMonto(posicionRecibida.getMonto());
+        posicion.setPlazo(posicionRecibida.getPlazo());
+        // posicion.setModificaciones(posicionRecibida.getModificaciones());
 
         posicionServicio.guardarPosicion(posicion);
 
