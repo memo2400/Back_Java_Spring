@@ -45,10 +45,10 @@ public class Posicion {
     Boolean largoPlazo;
     LocalDateTime fechaCapturaFront;
 
-    // // Funcional para hacer una nueva tabla cada que se inserta una nueva posicon
-    // @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    // @JoinColumn(name = "posicion_id") // Esto genera una relación unidireccional
-    // private List<Modificacion> modificaciones;
+    // Funcional para hacer una nueva tabla cada que se inserta una nueva posicon
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "posicion_id") // Esto genera una relación unidireccional
+    private List<Modificacion> modificaciones;
 
     // Pruebas
     // @Lob
