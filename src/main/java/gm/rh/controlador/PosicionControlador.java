@@ -3,6 +3,7 @@ package gm.rh.controlador;
 
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import gm.rh.excepcion.RecursoNoEncontradoExcepcion;
 import gm.rh.modelo.Empleado;
+import gm.rh.modelo.Modificacion;
 import gm.rh.modelo.Posicion;
 import gm.rh.servicios.InterPosicionServicio;
 
@@ -137,6 +139,30 @@ public class PosicionControlador {
         return ResponseEntity.ok(respuesta);
 
     }
+
+    // agregar datos a "Modificaciones"
+    @PutMapping("/posicionEdit/{id}/modificacion")
+    public ResponseEntity<Posicion> agregarModificacion(@PathVariable Integer id, 
+    @RequestBody Modificacion nuevaModificacion) {
+
+    // Buscar la Posicion por su ID
+    Posicion posicion = posicionServicio.buscarPosicionPorId(id);
+    if (posicion == null) {
+        throw new RecursoNoEncontradoExcepcion("El ID de Posicion recibido no existe: " + id);
+    }
+
+    // Agregar la nueva Modificacion a la lista
+    if (posicion.getModificaciones() == null) {
+        posicion.setModificaciones(new ArrayList<>());
+    }
+    posicion.getModificaciones().add(nuevaModificacion);
+
+    // Guardar la Posicion actualizada
+    Posicion posicionActualizada = posicionServicio.guardarPosicion(posicion);
+
+    return ResponseEntity.ok(posicionActualizada);
+}
+
 
 
 }
